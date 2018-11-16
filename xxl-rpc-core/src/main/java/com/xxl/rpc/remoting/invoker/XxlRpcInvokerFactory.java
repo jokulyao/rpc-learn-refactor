@@ -18,14 +18,11 @@ public class XxlRpcInvokerFactory {
     // ---------------------- config ----------------------
 
     private Class<? extends ServiceRegistry> serviceRegistryClass;          // class.forname
-    private Map<String, String> serviceRegistryParam;
-
 
     public XxlRpcInvokerFactory() {
     }
-    public XxlRpcInvokerFactory(Class<? extends ServiceRegistry> serviceRegistryClass, Map<String, String> serviceRegistryParam) {
+    public XxlRpcInvokerFactory(Class<? extends ServiceRegistry> serviceRegistryClass) {
         this.serviceRegistryClass = serviceRegistryClass;
-        this.serviceRegistryParam = serviceRegistryParam;
     }
 
     // ---------------------- start / stop ----------------------
@@ -34,7 +31,7 @@ public class XxlRpcInvokerFactory {
         // start registry
         if (serviceRegistryClass != null) {
             serviceRegistry = serviceRegistryClass.newInstance();
-            serviceRegistry.start(serviceRegistryParam);
+            serviceRegistry.start();
         }
     }
 

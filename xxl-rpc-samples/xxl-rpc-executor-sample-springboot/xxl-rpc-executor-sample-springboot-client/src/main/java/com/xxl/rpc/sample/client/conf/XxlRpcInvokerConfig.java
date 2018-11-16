@@ -37,11 +37,6 @@ public class XxlRpcInvokerConfig {
         XxlRpcSpringInvokerFactory invokerFactory = new XxlRpcSpringInvokerFactory();
         if (zkaddress!=null && zkaddress.trim().length()>0) {
             invokerFactory.setServiceRegistryClass(ZkServiceRegistry.class);
-            invokerFactory.setServiceRegistryParam(new HashMap<String, String>(){{
-                put(Environment.ZK_ADDRESS, zkaddress);
-                put(Environment.ZK_DIGEST, zkdigest);
-                put(Environment.ENV, env);
-            }});
         }
 
         logger.info(">>>>>>>>>>> xxl-rpc invoker config init finish.");

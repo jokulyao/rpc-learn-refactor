@@ -39,11 +39,6 @@ public class XxlRpcProviderConfig {
         providerFactory.setPort(port);
         if (zkaddress!=null && zkaddress.trim().length()>0) {
             providerFactory.setServiceRegistryClass(ZkServiceRegistry.class);
-            providerFactory.setServiceRegistryParam(new HashMap<String, String>(){{
-                put(Environment.ZK_ADDRESS, zkaddress);
-                put(Environment.ZK_DIGEST, zkdigest);
-                put(Environment.ENV, env);
-            }});
         }
 
         logger.info(">>>>>>>>>>> xxl-rpc provider config init finish.");

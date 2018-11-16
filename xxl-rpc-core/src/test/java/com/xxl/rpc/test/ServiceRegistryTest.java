@@ -24,7 +24,7 @@ public class ServiceRegistryTest {
         Class<? extends ServiceRegistry> serviceRegistryClass = ZkServiceRegistry.class;
 
         ServiceRegistry serviceRegistry = serviceRegistryClass.newInstance();
-        serviceRegistry.start(param);
+        serviceRegistry.start();
 
 
         String servicename = "demo_service";

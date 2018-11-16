@@ -30,15 +30,10 @@ public class XxlRpcSpringInvokerFactory extends InstantiationAwareBeanPostProces
     // ---------------------- config ----------------------
 
     private Class<? extends ServiceRegistry> serviceRegistryClass;          // class.forname
-    private Map<String, String> serviceRegistryParam;
 
 
     public void setServiceRegistryClass(Class<? extends ServiceRegistry> serviceRegistryClass) {
         this.serviceRegistryClass = serviceRegistryClass;
-    }
-
-    public void setServiceRegistryParam(Map<String, String> serviceRegistryParam) {
-        this.serviceRegistryParam = serviceRegistryParam;
     }
 
 
@@ -49,7 +44,7 @@ public class XxlRpcSpringInvokerFactory extends InstantiationAwareBeanPostProces
     @Override
     public void afterPropertiesSet() throws Exception {
         // start invoker factory
-        xxlRpcInvokerFactory = new XxlRpcInvokerFactory(serviceRegistryClass, serviceRegistryParam);
+        xxlRpcInvokerFactory = new XxlRpcInvokerFactory(serviceRegistryClass);
         xxlRpcInvokerFactory.start();
     }
 

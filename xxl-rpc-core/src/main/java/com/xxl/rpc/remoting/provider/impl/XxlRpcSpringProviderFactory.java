@@ -33,8 +33,6 @@ public class XxlRpcSpringProviderFactory extends XxlRpcProviderFactory implement
     private String accessToken;
 
     private Class<? extends ServiceRegistry> serviceRegistryClass;                          // class.forname
-    private Map<String, String> serviceRegistryParam;
-
 
     // set
     public void setNetType(String netType) {
@@ -61,10 +59,6 @@ public class XxlRpcSpringProviderFactory extends XxlRpcProviderFactory implement
         this.serviceRegistryClass = serviceRegistryClass;
     }
 
-    public void setServiceRegistryParam(Map<String, String> serviceRegistryParam) {
-        this.serviceRegistryParam = serviceRegistryParam;
-    }
-
 
     // util
     private void prepareConfig(){
@@ -82,7 +76,7 @@ public class XxlRpcSpringProviderFactory extends XxlRpcProviderFactory implement
         }
 
         // init config
-        super.initConfig(netTypeEnum, serializer, ip, port, accessToken, serviceRegistryClass, serviceRegistryParam);
+        super.initConfig(netTypeEnum, serializer, ip, port, accessToken, serviceRegistryClass);
     }
 
 

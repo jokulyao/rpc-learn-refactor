@@ -34,18 +34,10 @@ public class XxlRpcProviderFactory {
 	private String accessToken;
 
 	private Class<? extends ServiceRegistry> serviceRegistryClass;
-	private Map<String, String> serviceRegistryParam;
-
 
 	public XxlRpcProviderFactory() {
 	}
-	public void initConfig(NetEnum netType,
-						  Serializer serializer,
-						  String ip,
-						  int port,
-						  String accessToken,
-						   Class<? extends ServiceRegistry> serviceRegistryClass,
-						  Map<String, String> serviceRegistryParam) {
+	public void initConfig(NetEnum netType, Serializer serializer, String ip, int port, String accessToken, Class<? extends ServiceRegistry> serviceRegistryClass) {
 
 		this.netType = netType;
 		this.serializer = serializer;
@@ -53,7 +45,6 @@ public class XxlRpcProviderFactory {
 		this.port = port;
 		this.accessToken = accessToken;
 		this.serviceRegistryClass = serviceRegistryClass;
-		this.serviceRegistryParam = serviceRegistryParam;
 	}
 
 
@@ -80,7 +71,7 @@ public class XxlRpcProviderFactory {
 				// start registry
 				if (serviceRegistryClass != null) {
 					serviceRegistry = serviceRegistryClass.newInstance();
-					serviceRegistry.start(serviceRegistryParam);
+					serviceRegistry.start();
 
 					if (serviceData.size() > 0) {
 						String ipPort = IpUtil.getIpPort(ip, port);

@@ -20,10 +20,9 @@ public class LocalServiceRegistry extends ServiceRegistry {
 
 
     /**
-     * @param param ignore, not use
      */
     @Override
-    public void start(Map<String, String> param) {
+    public void start() {
         registryData = new HashMap<String, TreeSet<String>>();
     }
 

@@ -19,7 +19,7 @@ public abstract class ServiceRegistry {
     /**
      * start
      */
-    public abstract void start(Map<String, String> param);
+    public abstract void start();
 
     /**
      * start

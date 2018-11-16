@@ -2,6 +2,7 @@ package com.xxl.rpc.registry.impl;
 
 import com.xxl.rpc.registry.ServiceRegistry;
 import com.xxl.rpc.util.Environment;
+import com.xxl.rpc.util.PropUtil;
 import com.xxl.rpc.util.XxlRpcException;
 import com.xxl.rpc.util.XxlZkClient;
 import org.apache.zookeeper.KeeperException;
@@ -10,10 +11,7 @@ import org.apache.zookeeper.Watcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
@@ -70,16 +68,12 @@ public class ZkServiceRegistry extends ServiceRegistry {
     // ------------------------------ util ------------------------------
 
     /**
-     * @param param
-     *      Environment.ZK_ADDRESS  ：zk address
-     *      Environment.ZK_DIGEST   ：zk didest
-     *      Environment.ENV         ：env
      */
     @Override
-    public void start(Map<String, String> param) {
-        String zkaddress = param.get(Environment.ZK_ADDRESS);
-        String zkdigest = param.get(Environment.ZK_DIGEST);
-        String env = param.get(Environment.ENV);
+    public void start() {
+        String zkaddress = PropUtil.getProperty(Environment.ZK_ADDRESS);
+        String zkdigest = PropUtil.getProperty(Environment.ZK_DIGEST);
+        String env = PropUtil.getProperty(Environment.ENV);
 
         // valid
         if (zkaddress==null || zkaddress.trim().length()==0) {
