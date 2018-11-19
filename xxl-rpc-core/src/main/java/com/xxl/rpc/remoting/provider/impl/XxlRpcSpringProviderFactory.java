@@ -27,11 +27,9 @@ public class XxlRpcSpringProviderFactory extends XxlRpcProviderFactory implement
 
     private String netType = NetEnum.JETTY.name();
     private String serialize = Serializer.SerializeEnum.HESSIAN.name();
-
     private String ip = IpUtil.getIp();		        // for registry
     private int port = 7080;       			        // default port
     private String accessToken;
-
     private ServiceRegistry serviceRegistry;                          // class.forname
 
     public void setNetType(String netType) {
@@ -57,7 +55,6 @@ public class XxlRpcSpringProviderFactory extends XxlRpcProviderFactory implement
     public void setServiceRegistry(ServiceRegistry serviceRegistry) {
         this.serviceRegistry = serviceRegistry;
     }
-
 
     // util
     private void prepareConfig(){

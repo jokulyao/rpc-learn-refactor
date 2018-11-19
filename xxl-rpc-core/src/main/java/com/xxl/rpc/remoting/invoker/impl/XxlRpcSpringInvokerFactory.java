@@ -29,16 +29,11 @@ public class XxlRpcSpringInvokerFactory extends InstantiationAwareBeanPostProces
     // ---------------------- config ----------------------
 
     private ServiceRegistry serviceRegistry;          // class.forname
-
+    private XxlRpcInvokerFactory xxlRpcInvokerFactory;
 
     public void setServiceRegistry(ServiceRegistry serviceRegistry) {
         this.serviceRegistry = serviceRegistry;
     }
-
-
-    // ---------------------- util ----------------------
-
-    private XxlRpcInvokerFactory xxlRpcInvokerFactory;
 
     @Override
     public void afterPropertiesSet() throws Exception {

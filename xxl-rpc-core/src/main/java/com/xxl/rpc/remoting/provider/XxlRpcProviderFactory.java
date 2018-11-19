@@ -28,7 +28,6 @@ public class XxlRpcProviderFactory {
 
 	private NetEnum netType;
 	private Serializer serializer;
-
 	private String ip;					// for registry
 	private int port = 7080;			// default port
 	private String accessToken;
