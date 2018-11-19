@@ -33,18 +33,16 @@ public class XxlRpcProviderFactory {
 	private int port = 7080;			// default port
 	private String accessToken;
 
-	private Class<? extends ServiceRegistry> serviceRegistryClass;
-
 	public XxlRpcProviderFactory() {
 	}
-	public void initConfig(NetEnum netType, Serializer serializer, String ip, int port, String accessToken, Class<? extends ServiceRegistry> serviceRegistryClass) {
+	public void initConfig(NetEnum netType, Serializer serializer, String ip, int port, String accessToken, ServiceRegistry serviceRegistry) {
 
 		this.netType = netType;
 		this.serializer = serializer;
 		this.ip = ip;
 		this.port = port;
 		this.accessToken = accessToken;
-		this.serviceRegistryClass = serviceRegistryClass;
+		this.serviceRegistry = serviceRegistry;
 	}
 
 
@@ -63,14 +61,11 @@ public class XxlRpcProviderFactory {
 	private ServiceRegistry serviceRegistry;
 
 	public void start() throws Exception {
-		// start server
 		server = netType.serverClass.newInstance();
 		server.setStartedCallback(new BaseCallback() {		// serviceRegistry started
 			@Override
 			public void run() throws Exception {
-				// start registry
-				if (serviceRegistryClass != null) {
-					serviceRegistry = serviceRegistryClass.newInstance();
+				if (serviceRegistry != null) {
 					serviceRegistry.start();
 
 					if (serviceData.size() > 0) {
@@ -85,7 +80,6 @@ public class XxlRpcProviderFactory {
 		server.setStopedCallback(new BaseCallback() {		// serviceRegistry stoped
 			@Override
 			public void run() {
-				// stop registry
 				if (serviceRegistry != null) {
 					if (serviceData.size() > 0) {
 						String ipPort = IpUtil.getIpPort(ip, port);
@@ -102,7 +96,6 @@ public class XxlRpcProviderFactory {
 	}
 
 	public void  stop() throws Exception {
-		// stop server
 		server.stop();
 	}
 

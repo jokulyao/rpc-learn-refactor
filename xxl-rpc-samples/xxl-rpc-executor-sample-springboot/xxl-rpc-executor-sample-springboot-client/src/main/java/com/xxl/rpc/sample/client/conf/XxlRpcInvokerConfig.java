@@ -2,14 +2,11 @@ package com.xxl.rpc.sample.client.conf;
 
 import com.xxl.rpc.registry.impl.ZkServiceRegistry;
 import com.xxl.rpc.remoting.invoker.impl.XxlRpcSpringInvokerFactory;
-import com.xxl.rpc.util.Environment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.HashMap;
 
 /**
  * xxl-rpc invoker config
@@ -36,7 +33,7 @@ public class XxlRpcInvokerConfig {
 
         XxlRpcSpringInvokerFactory invokerFactory = new XxlRpcSpringInvokerFactory();
         if (zkaddress!=null && zkaddress.trim().length()>0) {
-            invokerFactory.setServiceRegistryClass(ZkServiceRegistry.class);
+            invokerFactory.setServiceRegistry(new ZkServiceRegistry());
         }
 
         logger.info(">>>>>>>>>>> xxl-rpc invoker config init finish.");

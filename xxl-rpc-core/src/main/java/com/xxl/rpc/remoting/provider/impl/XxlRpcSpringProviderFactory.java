@@ -32,9 +32,8 @@ public class XxlRpcSpringProviderFactory extends XxlRpcProviderFactory implement
     private int port = 7080;       			        // default port
     private String accessToken;
 
-    private Class<? extends ServiceRegistry> serviceRegistryClass;                          // class.forname
+    private ServiceRegistry serviceRegistry;                          // class.forname
 
-    // set
     public void setNetType(String netType) {
         this.netType = netType;
     }
@@ -55,8 +54,8 @@ public class XxlRpcSpringProviderFactory extends XxlRpcProviderFactory implement
         this.accessToken = accessToken;
     }
 
-    public void setServiceRegistryClass(Class<? extends ServiceRegistry> serviceRegistryClass) {
-        this.serviceRegistryClass = serviceRegistryClass;
+    public void setServiceRegistry(ServiceRegistry serviceRegistry) {
+        this.serviceRegistry = serviceRegistry;
     }
 
 
@@ -75,8 +74,7 @@ public class XxlRpcSpringProviderFactory extends XxlRpcProviderFactory implement
             throw new XxlRpcException("xxl-rpc provider port["+ port +"] is used.");
         }
 
-        // init config
-        super.initConfig(netTypeEnum, serializer, ip, port, accessToken, serviceRegistryClass);
+        super.initConfig(netTypeEnum, serializer, ip, port, accessToken, serviceRegistry);
     }
 
 

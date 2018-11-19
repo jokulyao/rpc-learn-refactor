@@ -14,40 +14,22 @@ import java.util.Map;
  */
 public class XxlRpcInvokerFactory {
 
-
-    // ---------------------- config ----------------------
-
-    private Class<? extends ServiceRegistry> serviceRegistryClass;          // class.forname
-
-    public XxlRpcInvokerFactory() {
-    }
-    public XxlRpcInvokerFactory(Class<? extends ServiceRegistry> serviceRegistryClass) {
-        this.serviceRegistryClass = serviceRegistryClass;
-    }
-
-    // ---------------------- start / stop ----------------------
-
     public void start() throws Exception {
-        // start registry
-        if (serviceRegistryClass != null) {
-            serviceRegistry = serviceRegistryClass.newInstance();
+        if (serviceRegistry != null) {
             serviceRegistry.start();
         }
     }
 
     public void  stop() throws Exception {
-        // stop registry
         if (serviceRegistry != null) {
             serviceRegistry.stop();
         }
 
-        // stop callback
         if (stopCallbackList.size() > 0) {
             for (BaseCallback callback: stopCallbackList) {
                 callback.run();
             }
         }
-
     }
 
 
@@ -59,6 +41,9 @@ public class XxlRpcInvokerFactory {
         return serviceRegistry;
     }
 
+    public static void setServiceRegistry(ServiceRegistry param) {
+        serviceRegistry = param;
+    }
 
     // ---------------------- service registry (static) ----------------------
     private static List<BaseCallback> stopCallbackList = new ArrayList<BaseCallback>();     // JettyClient、ClientPooled
