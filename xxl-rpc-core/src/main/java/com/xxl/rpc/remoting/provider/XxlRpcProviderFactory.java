@@ -44,7 +44,6 @@ public class XxlRpcProviderFactory {
 		this.serviceRegistry = serviceRegistry;
 	}
 
-
 	public Serializer getSerializer() {
 		return serializer;
 	}
@@ -53,9 +52,7 @@ public class XxlRpcProviderFactory {
 		return port;
 	}
 
-
 	// ---------------------- start / stop ----------------------
-
 	private Server server;
 	private ServiceRegistry serviceRegistry;
 
@@ -98,7 +95,6 @@ public class XxlRpcProviderFactory {
 		server.stop();
 	}
 
-
 	// ---------------------- server invoke ----------------------
 
 	/**
@@ -134,7 +130,6 @@ public class XxlRpcProviderFactory {
 	public void addService(String iface, String version, Object serviceBean){
 		String serviceKey = makeServiceKey(iface, version);
 		serviceData.put(serviceKey, serviceBean);
-
 		logger.info(">>>>>>>>>>> xxl-rpc, provider factory add service success. serviceKey = {}, serviceBean = {}", serviceKey, serviceBean.getClass());
 	}
 
